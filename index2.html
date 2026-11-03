@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect With Me - Nova</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+            padding: 35px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+            padding-bottom: 20px;
+        }
+
+        header h2 {
+            letter-spacing: 4px;
+            font-size: 27px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 45px 0;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        form {
+            max-width: 850px;
+            margin: 20px auto;
+        }
+
+        fieldset {
+            border: 1px solid #333;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: white;
+        }
+
+        legend {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #999;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .options label {
+            display: inline-block;
+            margin-right: 20px;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            height: 110px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 13px 30px;
+            border: 1px solid black;
+            background: black;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+        }
+
+        .reset {
+            background: white;
+            color: black;
+        }
+
+        footer {
+            border-top: 1px solid black;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 18px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            nav a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            fieldset {
+                padding: 18px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>NOVA.</h2>
+
+        <nav aria-label="Main navigation">
+            <a href="#home">Home</a>
+            <a href="#form">Connect</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <h1>Get to Know Me</h1>
+
+            <p>
+                Welcome to Nova Creative Studio!
+                Fill out the form below to share your details,
+                interests and ideas. Let's connect and create
+                something meaningful together.
+            </p>
+
+        </section>
+
+        <form id="connectForm">
+
+            <!-- Personal Details -->
+
+            <fieldset>
+
+                <legend>1. Personal Details</legend>
+
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name"
+                    placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender:</label>
+
+                    <div class="options">
+                        <label>
+                            <input type="radio" name="gender" value="Male">
+                            Male
+                        </label>
+
+                        <label>
+                            <input type="radio" name="gender" value="Female">
+                            Female
+                        </label>
+
+                        <label>
+                            <input type="radio" name="gender" value="Other">
+                            Other
+                        </label>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <!-- Contact Information -->
+
+            <fieldset>
+
+                <legend>2. Contact Information</legend>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email"
+                    placeholder="example@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone"
+                    placeholder="Enter phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city"
+                    placeholder="Enter your city">
+                </div>
+
+            </fieldset>
+
+            <!-- Academic Details -->
+
+            <fieldset>
+
+                <legend>3. Professional / Academic Details</legend>
+
+                <div class="form-group">
+                    <label for="institution">Institution / Organization:</label>
+                    <input type="text" id="institution" name="institution"
+                    placeholder="Enter institution name">
+                </div>
+
+                <div class="form-group">
+                    <label for="designation">Designation:</label>
+                    <input type="text" id="designation" name="designation"
+                    placeholder="Student / Employee / Other">
+                </div>
+
+                <div class="form-group">
+                    <label for="study">Area of Study:</label>
+
+                    <select id="study" name="study">
+                        <option value="">Select your area</option>
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Business</option>
+                        <option>Engineering</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+            </fieldset>
+
+            <!-- Interests -->
+
+            <fieldset>
+
+                <legend>4. Interests</legend>
+
+                <div class="form-group">
+                    <label>Select your interests:</label>
+
+                    <div class="options">
+                        <label>
+                            <input type="checkbox" name="interest" value="Technology">
+                            Technology
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="interest" value="Sports">
+                            Sports
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="interest" value="Music">
+                            Music
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="interest" value="Travel">
+                            Travel
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="interest" value="Art">
+                            Art
+                        </label>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Your Skills:</label>
+
+                    <textarea id="skills" name="skills"
+                    placeholder="Mention your skills here..."></textarea>
+                </div>
+
+            </fieldset>
+
+            <!-- Purpose of Contact -->
+
+            <fieldset>
+
+                <legend>5. Purpose of Contact</legend>
+
+                <div class="form-group">
+
+                    <label for="purpose">Select your purpose:</label>
+
+                    <select id="purpose" name="purpose" required>
+
+                        <option value="">Choose an option</option>
+                        <option>Collaboration</option>
+                        <option>Project Discussion</option>
+                        <option>Networking</option>
+                        <option>General Enquiry</option>
+
+                    </select>
+
+                </div>
+
+            </fieldset>
+
+            <!-- Additional Information -->
+
+            <fieldset>
+
+                <legend>6. Additional Information</legend>
+
+                <div class="form-group">
+
+                    <label for="message">Message / Introduction:</label>
+
+                    <textarea id="message" name="message"
+                    placeholder="Tell us something about yourself..."></textarea>
+
+                </div>
+
+            </fieldset>
+
+            <!-- Form Buttons -->
+
+            <div class="buttons">
+
+                <button type="submit">Submit Form</button>
+
+                <button type="reset" class="reset">Reset Form</button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+    <footer id="contact">
+
+        <p>NOVA. — CREATIVE DIGITAL STUDIO</p>
+
+        <p>© 2026</p>
+
+    </footer>
+
+    <script>
+        document.getElementById("connectForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Thank you for connecting with Nova!");
+        });
+    </script>
+
+</body>
+</html>
