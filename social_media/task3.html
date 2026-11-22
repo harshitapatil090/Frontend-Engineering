@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 3 - Music Player & Playlist Shelf</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0b0f1a; color: #e2e8f0;
+  padding: 2rem 1rem; display: flex; justify-content: center;
+}
+
+/* ---------- Mobile base: stacked ---------- */
+.player {
+  width: 100%; max-width: 900px;
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+  background: #131a2b; border-radius: 16px; padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.now-playing { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
+
+/* Vinyl disc with continuous spin */
+.vinyl {
+  width: 160px; height: 160px; border-radius: 50%;
+  background: repeating-radial-gradient(circle, #111 0 3px, #1c1c1c 3px 6px);
+  display: flex; align-items: center; justify-content: center;
+  border: 4px solid #222;
+  animation: spin 6s linear infinite;
+}
+.vinyl::after {
+  content: ""; width: 50px; height: 50px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #22d3ee, #6366f1);
+  box-shadow: 0 0 0 6px #0b0f1a;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.vinyl.paused { animation-play-state: paused; }
+
+.track-title { font-size: 1.25rem; }
+.artist { color: #94a3b8; font-size: 0.9rem; }
+
+/* Controls: flex with uniform gap */
+.controls { display: flex; gap: 0.75rem; margin-top: 0.5rem; }
+.controls button {
+  width: 44px; height: 44px; border: none; border-radius: 50%;
+  background: #1f2a44; color: #e2e8f0; font-size: 1rem; cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.controls button:active { transform: scale(0.92); }
+.controls .play { background: #22d3ee; color: #0b0f1a; }
+
+/* Playlist */
+.queue h2 { font-size: 1rem; color: #94a3b8; margin-bottom: 0.75rem; }
+.queue ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #1a2339; padding: 0.85rem 1rem; border-radius: 10px;
+  transition: transform 0.2s ease; cursor: pointer;
+}
+.row:hover { transform: translateX(6px); }
+.duration { color: #94a3b8; font-variant-numeric: tabular-nums; }
+.play-tag { background: #22d3ee; color: #0b0f1a; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; }
+
+/* ---------- Desktop: fixed album column + fluid queue ---------- */
+@media (min-width: 768px) {
+  .player { grid-template-columns: 200px 1fr; gap: 2rem; }
+  .vinyl { width: 180px; height: 180px; }
+}
+@media (prefers-reduced-motion: reduce) { .vinyl { animation: none; } }
+</style>
+</head>
+<body>
+<main class="player">
+  <section class="now-playing">
+    <div class="vinyl" id="vinyl" role="img" aria-label="Spinning vinyl record"></div>
+    <h1 class="track-title" id="nowTitle">Neon Skyline</h1>
+    <p class="artist">Echo Harbor • 2026</p>
+    <div class="controls">
+      <button type="button" aria-label="Previous">⏮</button>
+      <button type="button" class="play" id="playBtn" aria-label="Pause">⏸</button>
+      <button type="button" aria-label="Next">⏭</button>
+    </div>
+  </section>
+
+  <section class="queue">
+    <h2>Up Next</h2>
+    <ul>
+      <li class="row"><span class="name">01. City Lights</span><span class="play-tag">PLAY</span></li>
+      <li class="row"><span class="name">02. Velvet Sky</span><span class="duration">4:15</span></li>
+      <li class="row"><span class="name">03. Rainy Streets</span><span class="duration">2:58</span></li>
+      <li class="row"><span class="name">04. Moonlit Highway</span><span class="duration">3:10</span></li>
+    </ul>
+  </section>
+</main>
+
+<script>
+// Play/pause the vinyl and pick a track from the queue
+const vinyl = document.getElementById('vinyl');
+const playBtn = document.getElementById('playBtn');
+const nowTitle = document.getElementById('nowTitle');
+const rows = document.querySelectorAll('.row');
+
+let playing = true;
+
+function setPlaying(state) {
+  playing = state;
+  vinyl.classList.toggle('paused', !playing);
+  playBtn.textContent = playing ? '⏸' : '▶';
+  playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+}
+
+playBtn.addEventListener('click', () => setPlaying(!playing));
+
+rows.forEach(row => {
+  row.addEventListener('click', () => {
+    // "01. City Lights" -> "City Lights"
+    nowTitle.textContent = row.querySelector('.name').textContent.replace(/^\d+\.\s*/, '');
+    setPlaying(true);
+  });
+});
+</script>
+</body>
+</html>
